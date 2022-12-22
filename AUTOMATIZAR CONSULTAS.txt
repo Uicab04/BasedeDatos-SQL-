@@ -1,0 +1,56 @@
+
+TEMA 5
+Agregar procedimientos a la base de datos:
+CREATE PROCEDURE nombre_sucursales()
+    SELECT nombre_sucursal FROM tc_sucursal
+;
+//procemiento condicionado 
+CREATE PROCEDURE nombres_peronal_activo()
+    SELECT * FROM `tc_personal` WHERE activo=1
+;
+
+a) Obtener una lista sin repeticiones de las ciudades registradas en la tabla sucursales
+CALL nombre_sucursales();
+
+b) Obtener una lista de todo el personal con estatus activo igual a uno
+//procemiento condicionado 
+CREATE PROCEDURE nombres_peronal_activo()
+    SELECT * FROM `tc_personal` WHERE activo=1
+;
+
+c) Obtener una lista de todo el personal con estatus activo igual a cero
+
+d) Obtener una lista de todos los registros de la tabla cajas de una sucursal en
+específico. (El procedimiento almacenado debe recibir el id de una sucursal y a partir
+de ese dato mostrar los registros que pertenezcan a esa sucursal)
+
+CREATE PROCEDURE caja_registros (IN idcaja TINYINT(4))
+SELECT * FROM tc_caja WHERE id_caja = idcaja LIMIT 1;
+;
+
+e) Eliminar un registro de la tabla personal mediante el id de la persona. (El
+procedimiento almacenado debe recibir el id de la persona y a partir de ese dato
+realizar la eliminación)
+
+CREATE PROCEDURE eliminar_registro (IN idpersonal TINYINT(4))
+DELETE FROM tc_personal WHERE id_persona = idpersonal LIMIT 1;
+;
+
+llamar el procedimiento y borrarl el personal con su id:
+CALL eliminar_registro(25);
+	
+
+f) Actualizar el status activo del personal registrado. (El procedimiento almacenado debe
+recibir dos parámetros: el status que se quiere asignar y el id de la persona a la cual
+se le actualizará el status. Por ejemplo, a la persona con el id 5 se le quiere poner el
+status 0)
+
+DELIMITER $$
+CREATE PROCEDURE actualizar_activo_personal (IN idpersonal TINYINT(4), IN numpersona INT(4))
+BEGIN
+    UPDATE tc_personal SET activo=numpersona WHERE id_persona=idpersonal;
+END$$
+
+consulta:
+
+CALL actualizar_activo_personal(24,0)

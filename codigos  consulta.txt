@@ -1,0 +1,53 @@
+muestra lista ombres y modelos mennores a 1000
+SELECT tc_modelos.nombre, tc_telefonos_muestra1.precio FROM tc_modelos INNER JOIN tc_telefonos_muestra1 ON (tc_modelos.id_modelo=tc_telefonos_muestra1.id_marca) AND tc_telefonos_muestra1.precio < 1000;
+
+iarle el nombre a una tabla:
+UPDATE tc_modelos SET nombre='5250A' WHERE id_modelo=4
+
+borar una marca con todos los atributos:
+DELETE FROM tc_marca WHERE id_marca=5
+
+Muestra una tabla con nombres que se usaron en tras tablas asi como quien cerro la caja con mayor a 30000
+SELECT  nombres, a_paterno, usuario_cierre, id_sucursal, cantidad_cierre FROM tc_caja, tc_personal WHERE cantidad_cierre >30000
+
+LO MISMO DE ARRIBA PERO SOLO MOSTRAR CON SUCURSAL IGUAL 2
+SELECT  nombres, a_paterno, id_sucursal, cantidad_cierre FROM tc_caja, tc_personal WHERE id_sucursal = 2 AND cantidad_cierre > 30000
+
+
+SELECT  nombre_sucursal, cantidad_cierre, fecha_cierre FROM tc_caja, tc_sucursal WHERE cantidad_cierre > 22000;	
+
+a)	Realizar una consulta que devuelva los nombres, el apellido paterno del personal que haya cerrado caja con una cantidad mayor a $30,000.00. La consulta también debe mostrar el id de la sucursal y la cantidad de cierre de caja
+
+SELECT tc_personal.nombres, tc_personal.a_paterno, tc_caja.id_sucursal, tc_caja.cantidad_cierre FROM tc_personal INNER JOIN tc_caja ON (tc_personal.id_persona=tc_caja.usuario_cierre) AND tc_caja.cantidad_cierre > 30000;
+
+b)b) Realizar una consulta que devuelva los nombres y el apellido paterno del personal que haya cerrado caja con una cantidad mayor a $30,000.00 y que la sucursal sea igual a 7. La consulta también debe mostrar el id de la sucursal y la cantidad de cierre de caja.
+SELECT tc_personal.nombres, tc_personal.a_paterno, tc_caja.id_sucursal, tc_caja.cantidad_cierre FROM tc_personal INNER JOIN tc_caja ON (tc_personal.id_persona=tc_caja.usuario_cierre) WHERE tc_caja.id_sucursal = 7 AND tc_caja.cantidad_cierre > 30000
+
+
+borrador
+SELECT tc_sucursal.nombre_sucursal, tc_caja.cantidad_cierre, tc_caja.fecha_cierre FROM tc_sucursal INNER JOIN tc_caja ON (tc_sucursal.id_sucursal=tc_caja.usuario_cierre) WHERE tc_caja.cantidad_cierre < 25000 AND tc_caja.cantidad_cierre > 22000 ORDER BY cantidad_cierre ASC;
+
+consultar los nombres y apellidos que se ordenen en orden alfabetico asendente
+SELECT nombres, a_paterno, a_materno FROM `tc_personal` ORDER BY nombres;
+
+consultar de una tabla las columnas que culplan con el were
+SELECT id_caja, id_sucursal, usuario_inicio, usuario_cierre, estado, cantidad_inicial, cantidad_cierre,fecha_inicio, fecha_cierre FROM tc_caja WHERE cantidad_cierre >35000
+
+mostrar cantidad_ cierre en caja si la sucursal es el 4
+SELECT cantidad_cierre FROM tc_caja WHERE id_sucursal=4;
+
+ordenas nombres en orden alfabetico
+SELECT * FROM tc_personal ORDER BY nombres ASC;
+
+isertar un nuevo cuadro abajo
+INSERT INTO tc_marca (nombre) VALUES ('SAMSUNG');
+
+sumar todos los ids cantidad cierre de 7
+SELECT SUM(cantidad_cierre) FROM tc_caja WHERE id_sucursal=7;
+
+usuario:
+controlEscolarAdmin
+cvb678hjk
+
+ SET numpersona = (SELECT COUNT(*) FROM tc_personal WHERE id_persona=idpersonal);
+

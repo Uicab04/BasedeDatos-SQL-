@@ -1,0 +1,6 @@
+Mostrar, en una sola consulta, el número de registros de modelos registrados para la marca Alcatel.
+SELECT COUNT(*) FROM `tc_modelos` WHERE id_marca=3
+
+Mostrar, en una sola consulta, el número de registros de teléfonos con un precio mayor a $500.00 y menor a $2000.00
+SELECT COUNT(*) FROM `tc_telefonos_muestra1` WHERE precio > 500 AND PRECIO < 2000;
+
